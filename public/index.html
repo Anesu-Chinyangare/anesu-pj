@@ -193,6 +193,18 @@
         color: var(--text);
         border-color: var(--muted);
       }
+      .btn-back {
+        background: var(--surface2);
+        color: var(--muted);
+        border: 1px solid var(--border);
+        font-size: 11px;
+        padding: 5px 12px;
+        border-radius: 6px;
+      }
+      .btn-back:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
       .btn-full {
         width: 100%;
         padding: 12px;
@@ -406,6 +418,20 @@
         flex: 1;
         overflow-y: auto;
         padding: 32px;
+      }
+
+      /* Back to dashboard bar */
+      .page-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .page-bar-title {
+        font-family: var(--font-head);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
       }
 
       .page {
@@ -1230,9 +1256,23 @@
 
             <!-- Customers -->
             <div class="page" id="page-customers">
+              <div class="page-bar">
+                <div class="page-bar-title">All Customers</div>
+                <button
+                  class="btn btn-back"
+                  onclick="
+                    navigate(
+                      'dashboard',
+                      document.querySelector('[onclick*=dashboard]'),
+                    )
+                  "
+                >
+                  ← Back to Dashboard
+                </button>
+              </div>
               <div class="panel">
                 <div class="panel-header">
-                  <div class="panel-title">All Customers</div>
+                  <div class="panel-title">Customers</div>
                   <span
                     id="customerCount"
                     style="font-size: 11px; color: var(--muted)"
@@ -1264,6 +1304,20 @@
 
             <!-- Leads -->
             <div class="page" id="page-leads">
+              <div class="page-bar">
+                <div class="page-bar-title">Leads & Pipeline</div>
+                <button
+                  class="btn btn-back"
+                  onclick="
+                    navigate(
+                      'dashboard',
+                      document.querySelector('[onclick*=dashboard]'),
+                    )
+                  "
+                >
+                  ← Back to Dashboard
+                </button>
+              </div>
               <div class="panel" style="margin-bottom: 20px">
                 <div class="panel-header">
                   <div class="panel-title">Pipeline</div>
@@ -1309,9 +1363,23 @@
 
             <!-- Appointments -->
             <div class="page" id="page-appointments">
+              <div class="page-bar">
+                <div class="page-bar-title">All Appointments</div>
+                <button
+                  class="btn btn-back"
+                  onclick="
+                    navigate(
+                      'dashboard',
+                      document.querySelector('[onclick*=dashboard]'),
+                    )
+                  "
+                >
+                  ← Back to Dashboard
+                </button>
+              </div>
               <div class="panel">
                 <div class="panel-header">
-                  <div class="panel-title">All Appointments</div>
+                  <div class="panel-title">Appointments</div>
                   <span
                     id="apptCount"
                     style="font-size: 11px; color: var(--muted)"
@@ -1344,6 +1412,20 @@
 
             <!-- Analytics -->
             <div class="page" id="page-analytics">
+              <div class="page-bar">
+                <div class="page-bar-title">Analytics</div>
+                <button
+                  class="btn btn-back"
+                  onclick="
+                    navigate(
+                      'dashboard',
+                      document.querySelector('[onclick*=dashboard]'),
+                    )
+                  "
+                >
+                  ← Back to Dashboard
+                </button>
+              </div>
               <div class="kpi-grid" id="analyticsKpi">
                 <div class="loading">
                   <div class="spinner"></div>
@@ -1398,7 +1480,6 @@
         leadsData = [],
         apptsData = [];
 
-      // ── Auth ──
       async function doLogin() {
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value;
@@ -1445,7 +1526,6 @@
         el.classList.add("show");
       }
 
-      // ── API ──
       async function apiFetch(path, options = {}) {
         try {
           const res = await fetch(path, {
@@ -1467,7 +1547,6 @@
         }
       }
 
-      // ── Helpers ──
       const fmt$ = (v) => (v != null ? "$" + Number(v).toLocaleString() : "—");
       const fmtDate = (s) =>
         s
@@ -1486,7 +1565,6 @@
         `<tr><td colspan="${n}"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>`;
       const arr = (d) => (Array.isArray(d) ? d : d?.data || []);
 
-      // ── Navigation ──
       function navigate(page, el) {
         document
           .querySelectorAll(".nav-item")
@@ -1510,7 +1588,6 @@
         if (p === "analytics") return loadAnalytics();
       }
 
-      // ── Dashboard ──
       async function loadDashboard() {
         const [cd, ld, ad] = await Promise.all([
           apiFetch("/api/customers"),
@@ -1569,7 +1646,6 @@
           : '<div class="empty">No leads</div>';
       }
 
-      // ── Customers ──
       async function loadCustomers() {
         document.getElementById("customersTable").innerHTML = loadRow(5);
         const rows = arr(await apiFetch("/api/customers"));
@@ -1586,7 +1662,6 @@
           : errRow(5, "No customers found");
       }
 
-      // ── Leads ──
       async function loadLeads() {
         document.getElementById("leadsTable").innerHTML = loadRow(6);
         const rows = arr(await apiFetch("/api/leads"));
@@ -1629,7 +1704,6 @@
           : errRow(6, "No leads found");
       }
 
-      // ── Appointments ──
       async function loadAppointments() {
         document.getElementById("apptsTable").innerHTML = loadRow(6);
         const rows = arr(await apiFetch("/api/appointments"));
@@ -1646,7 +1720,6 @@
           : errRow(6, "No appointments found");
       }
 
-      // ── Analytics ──
       async function loadAnalytics() {
         const [dash, pipeline] = await Promise.all([
           apiFetch("/api/analytics/dashboard"),
@@ -1666,7 +1739,6 @@
           : '<div class="empty">No pipeline data</div>';
       }
 
-      // ── Search ──
       function handleSearch(q) {
         q = q.toLowerCase();
         if (currentPage === "customers") {
@@ -1707,7 +1779,6 @@
         }
       }
 
-      // ── Modal ──
       function openModal() {
         if (currentPage === "customers") openCustomerModal();
         else if (currentPage === "leads") openLeadModal();
@@ -1717,7 +1788,6 @@
         document.getElementById("modalOverlay").classList.remove("open");
       }
 
-      // Customer Modal
       function openCustomerModal() {
         document.getElementById("modalTitle").textContent = "New Customer";
         document.getElementById("modalBody").innerHTML = `
@@ -1777,7 +1847,6 @@
         } else showToast("Failed to create customer", true);
       }
 
-      // Lead Modal
       function openLeadModal() {
         document.getElementById("modalTitle").textContent = "New Lead";
         document.getElementById("modalBody").innerHTML = `
@@ -1848,7 +1917,6 @@
         } else showToast("Failed to create lead", true);
       }
 
-      // Appointment Modal
       function openAppointmentModal() {
         document.getElementById("modalTitle").textContent = "New Appointment";
         document.getElementById("modalBody").innerHTML = `
@@ -1915,7 +1983,6 @@
         } else showToast("Failed to create appointment", true);
       }
 
-      // ── Toast ──
       function showToast(msg, isErr = false) {
         document.getElementById("toastMsg").textContent = msg;
         document.getElementById("toastDot").className =
