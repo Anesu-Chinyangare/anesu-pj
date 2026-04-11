@@ -66,7 +66,6 @@
         border-radius: 2px;
       }
 
-      /* ── Login ── */
       #loginScreen {
         display: flex;
         align-items: center;
@@ -122,7 +121,6 @@
         display: block;
       }
 
-      /* ── Shared form ── */
       .form-group {
         margin-bottom: 16px;
       }
@@ -160,7 +158,6 @@
         gap: 12px;
       }
 
-      /* ── Buttons ── */
       .btn {
         display: inline-flex;
         align-items: center;
@@ -202,7 +199,6 @@
         font-size: 13px;
       }
 
-      /* ── App ── */
       #appScreen {
         display: none;
         height: 100vh;
@@ -212,7 +208,6 @@
         height: 100vh;
       }
 
-      /* Sidebar */
       .sidebar {
         width: 220px;
         min-width: 220px;
@@ -355,7 +350,6 @@
         opacity: 1;
       }
 
-      /* Main */
       .main {
         flex: 1;
         display: flex;
@@ -414,7 +408,6 @@
         padding: 32px;
       }
 
-      /* Pages */
       .page {
         display: none;
         animation: fadeIn 0.3s ease;
@@ -423,7 +416,6 @@
         display: block;
       }
 
-      /* KPI */
       .kpi-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -484,7 +476,6 @@
         color: var(--success);
       }
 
-      /* Layout */
       .two-col {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -498,7 +489,6 @@
         margin-bottom: 20px;
       }
 
-      /* Panel */
       .panel {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -521,7 +511,6 @@
         padding: 20px;
       }
 
-      /* Table */
       .table {
         width: 100%;
         border-collapse: collapse;
@@ -544,7 +533,6 @@
         background: rgba(255, 255, 255, 0.02);
       }
 
-      /* Badges */
       .badge {
         display: inline-flex;
         align-items: center;
@@ -620,7 +608,6 @@
         color: var(--warning);
       }
 
-      /* Score */
       .score-bar {
         display: flex;
         align-items: center;
@@ -645,7 +632,6 @@
         text-align: right;
       }
 
-      /* Pipeline */
       .pipeline {
         display: flex;
         gap: 12px;
@@ -705,7 +691,6 @@
         font-weight: 700;
       }
 
-      /* Appt list */
       .appt-item {
         display: flex;
         align-items: center;
@@ -748,7 +733,6 @@
         color: var(--muted);
       }
 
-      /* Bar chart */
       .bar-chart {
         display: flex;
         align-items: flex-end;
@@ -787,7 +771,6 @@
         color: var(--muted);
       }
 
-      /* Donut */
       .donut-wrap {
         display: flex;
         align-items: center;
@@ -839,7 +822,6 @@
         flex-shrink: 0;
       }
 
-      /* Misc */
       .empty {
         text-align: center;
         padding: 40px;
@@ -864,7 +846,6 @@
         flex-shrink: 0;
       }
 
-      /* Toast */
       .toast {
         position: fixed;
         bottom: 24px;
@@ -898,7 +879,6 @@
         background: var(--danger);
       }
 
-      /* Modal */
       .modal-overlay {
         position: fixed;
         inset: 0;
@@ -919,6 +899,8 @@
         padding: 28px;
         width: 480px;
         max-width: 90vw;
+        max-height: 90vh;
+        overflow-y: auto;
         animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
       .modal-title {
@@ -987,7 +969,7 @@
     </style>
   </head>
   <body>
-    <!-- ══ LOGIN ══ -->
+    <!-- LOGIN -->
     <div id="loginScreen">
       <div class="login-box">
         <div class="login-logo">Anesu<span>.</span></div>
@@ -1022,7 +1004,7 @@
       </div>
     </div>
 
-    <!-- ══ APP ══ -->
+    <!-- APP -->
     <div id="appScreen">
       <div class="app">
         <aside class="sidebar">
@@ -1381,71 +1363,30 @@
         </div>
       </div>
     </div>
-<!-- New Appointment Modal -->
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-title" id="modalTitle">New Appointment</div>
-    <div id="modalBody">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Title</label>
-          <input class="form-input" id="mTitle" placeholder="e.g. Strategy Call" />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Type</label>
-          <select class="form-select" id="mType">
-            <option value="consultation">Consultation</option>
-            <option value="follow_up">Follow-up</option>
-            <option value="demo">Demo</option>
-            <option value="strategy">Strategy</option>
-            <option value="proposal">Proposal</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Customer ID (UUID)</label>
-        <input class="form-input" id="mCustomerId" placeholder="e.g. 123e4567-e89b-12d3-a456-426614174000" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Scheduled At</label>
-        <input class="form-input" id="mDate" type="datetime-local" />
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Duration (min)</label>
-          <input class="form-input" id="mDuration" type="number" value="60" min="15" max="480" />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Status</label>
-          <select class="form-select" id="mStatus">
-            <option value="scheduled">Scheduled</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Notes</label>
-        <input class="form-input" id="mNotes" placeholder="Optional notes..." />
-      </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <div class="toast-dot" id="toastDot"></div>
+      <span id="toastMsg"></span>
     </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary" id="submitBtn" onclick="submitModal()">Create</button>
-    </div>
-  </div>
-</div>
-            >
-            Create
-          </button>
+
+    <!-- Modal -->
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="if (event.target === this) closeModal();"
+    >
+      <div class="modal">
+        <div class="modal-title" id="modalTitle">New</div>
+        <div id="modalBody"></div>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+          <button class="btn btn-primary" id="submitBtn">Create</button>
         </div>
       </div>
     </div>
 
     <script>
-      // ── Supabase ──
       const SUPABASE_URL = "https://cvflmervkyryoonkwron.supabase.co";
       const SUPABASE_ANON =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2ZmxtZXJ2a3lyeW9vbmt3cm9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MjcyNzAsImV4cCI6MjA5MTIwMzI3MH0.uRM8aQ1WS1VHuaZFzdFNZvIE-wa-wcV9YWSyxT1U3e4";
@@ -1457,7 +1398,7 @@
         leadsData = [],
         apptsData = [];
 
-      // ── Login ──
+      // ── Auth ──
       async function doLogin() {
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value;
@@ -1466,31 +1407,24 @@
           showLoginErr("Please enter your email and password.");
           return;
         }
-
         btn.disabled = true;
         btn.textContent = "Signing in...";
         document.getElementById("loginError").classList.remove("show");
-
         const { data, error } = await sb.auth.signInWithPassword({
           email,
           password,
         });
-
         if (error || !data?.session) {
-          showLoginErr(
-            error?.message || "Login failed. Check your credentials.",
-          );
+          showLoginErr(error?.message || "Login failed.");
           btn.disabled = false;
           btn.textContent = "Sign In";
           return;
         }
-
         accessToken = data.session.access_token;
         document.getElementById("userAvatar").textContent = (data.user.email ||
           "A")[0].toUpperCase();
         document.getElementById("userEmail").textContent =
           data.user.email || "User";
-
         document.getElementById("loginScreen").style.display = "none";
         document.getElementById("appScreen").style.display = "block";
         loadDashboard();
@@ -1511,7 +1445,7 @@
         el.classList.add("show");
       }
 
-      // ── API — always attaches Bearer token ──
+      // ── API ──
       async function apiFetch(path, options = {}) {
         try {
           const res = await fetch(path, {
@@ -1550,6 +1484,7 @@
         `<tr><td colspan="${n}"><div class="empty">⚠ ${m}</div></td></tr>`;
       const loadRow = (n) =>
         `<tr><td colspan="${n}"><div class="loading"><div class="spinner"></div> Loading...</div></td></tr>`;
+      const arr = (d) => (Array.isArray(d) ? d : d?.data || []);
 
       // ── Navigation ──
       function navigate(page, el) {
@@ -1582,13 +1517,12 @@
           apiFetch("/api/leads"),
           apiFetch("/api/appointments"),
         ]);
-        const c = arr(cd);
-        const l = arr(ld);
-        const a = arr(ad);
+        const c = arr(cd),
+          l = arr(ld),
+          a = arr(ad);
         customersData = c;
         leadsData = l;
         apptsData = a;
-
         const rev = c.reduce((s, x) => s + parseFloat(x.total_spent || 0), 0);
         const active = l.filter(
           (x) => !["closed_won", "closed_lost"].includes(x.stage),
@@ -1596,24 +1530,21 @@
         const upcount = a.filter((x) =>
           ["scheduled", "confirmed"].includes(x.status),
         ).length;
-
         document.getElementById("kpiGrid").innerHTML = `
       <div class="kpi-card"><div class="kpi-label">Total Revenue</div><div class="kpi-value" style="color:var(--accent)">${fmt$(rev)}</div><div class="kpi-delta">↑ All time</div></div>
       <div class="kpi-card"><div class="kpi-label">Customers</div><div class="kpi-value" style="color:var(--accent2)">${c.length}</div><div class="kpi-delta">Total accounts</div></div>
       <div class="kpi-card"><div class="kpi-label">Active Leads</div><div class="kpi-value" style="color:var(--success)">${active}</div><div class="kpi-delta">In pipeline</div></div>
       <div class="kpi-card"><div class="kpi-label">Upcoming</div><div class="kpi-value" style="color:var(--warning)">${upcount}</div><div class="kpi-delta">Appointments</div></div>`;
         document.getElementById("totalCustomers").textContent = c.length || "—";
-
         const mo = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-        const vs = mo.map(() => Math.floor(Math.random() * 15000 + 3000));
-        const mx = Math.max(...vs);
+        const vs = mo.map(() => Math.floor(Math.random() * 15000 + 3000)),
+          mx = Math.max(...vs);
         document.getElementById("revenueChart").innerHTML = vs
           .map(
             (v, i) =>
               `<div class="bar-wrap"><div class="bar-outer"><div class="bar-inner" style="height:${Math.round((v / mx) * 100)}%"></div></div><div class="bar-label">${mo[i]}</div></div>`,
           )
           .join("");
-
         const up = a
           .filter((x) => ["scheduled", "confirmed"].includes(x.status))
           .slice(0, 5);
@@ -1621,25 +1552,18 @@
           ? up
               .map((x) => {
                 const d = new Date(x.scheduled_at);
-                return `<div class="appt-item">
-          <div class="appt-time"><strong>${d.getHours()}:${String(d.getMinutes()).padStart(2, "0")}</strong>${d.toLocaleDateString("en-GB", { day: "2-digit", month: "short" })}</div>
-          <div class="appt-dot" style="background:${x.status === "confirmed" ? "var(--success)" : "var(--accent2)"}"></div>
-          <div class="appt-info"><div class="appt-title">${x.title}</div><div class="appt-sub">${x.type || "—"}</div></div>
-          ${badge(x.status)}</div>`;
+                return `<div class="appt-item"><div class="appt-time"><strong>${d.getHours()}:${String(d.getMinutes()).padStart(2, "0")}</strong>${d.toLocaleDateString("en-GB", { day: "2-digit", month: "short" })}</div><div class="appt-dot" style="background:${x.status === "confirmed" ? "var(--success)" : "var(--accent2)"}"></div><div class="appt-info"><div class="appt-title">${x.title}</div><div class="appt-sub">${x.type || "—"}</div></div>${badge(x.status)}</div>`;
               })
               .join("")
           : '<div class="empty">No upcoming appointments</div>';
-
         const top = [...l]
           .sort((a, b) => (b.score || 0) - (a.score || 0))
           .slice(0, 5);
         document.getElementById("topLeads").innerHTML = top.length
           ? top
               .map(
-                (x) => `<div class="appt-item">
-          <div class="appt-info"><div class="appt-title">${x.first_name} ${x.last_name}</div><div class="appt-sub">${x.company || x.email || "—"}</div></div>
-          <div class="score-bar" style="width:120px"><div class="score-track"><div class="score-fill" style="width:${x.score || 0}%"></div></div><div class="score-num">${x.score || 0}</div></div>
-        </div>`,
+                (x) =>
+                  `<div class="appt-item"><div class="appt-info"><div class="appt-title">${x.first_name} ${x.last_name}</div><div class="appt-sub">${x.company || x.email || "—"}</div></div><div class="score-bar" style="width:120px"><div class="score-track"><div class="score-fill" style="width:${x.score || 0}%"></div></div><div class="score-num">${x.score || 0}</div></div></div>`,
               )
               .join("")
           : '<div class="empty">No leads</div>';
@@ -1655,12 +1579,8 @@
         document.getElementById("customersTable").innerHTML = rows.length
           ? rows
               .map(
-                (c) => `<tr>
-          <td><strong>${c.first_name} ${c.last_name}</strong></td>
-          <td>${c.company || "—"}</td><td style="color:var(--muted)">${c.email || "—"}</td>
-          <td>${badge(c.status)}</td>
-          <td style="color:var(--accent);font-family:var(--font-head)">${fmt$(c.total_spent)}</td>
-        </tr>`,
+                (c) =>
+                  `<tr><td><strong>${c.first_name} ${c.last_name}</strong></td><td>${c.company || "—"}</td><td style="color:var(--muted)">${c.email || "—"}</td><td>${badge(c.status)}</td><td style="color:var(--accent);font-family:var(--font-head)">${fmt$(c.total_spent)}</td></tr>`,
               )
               .join("")
           : errRow(5, "No customers found");
@@ -1673,7 +1593,6 @@
         leadsData = rows;
         document.getElementById("leadCount").textContent =
           rows.length + " records";
-
         const stages = [
           "new",
           "discovery",
@@ -1694,38 +1613,17 @@
         rows.forEach((r) => {
           if (g[r.stage]) g[r.stage].push(r);
         });
-
         document.getElementById("pipelineBoard").innerHTML = stages
           .map(
             (s) =>
-              `<div class="pipeline-col">
-        <div class="pipeline-header"><span>${labels[s]}</span><span class="pipeline-count">${g[s].length}</span></div>
-        ${
-          g[s]
-            .map(
-              (r) => `<div class="pipeline-card">
-          <div class="pipeline-name">${r.first_name} ${r.last_name}</div>
-          <div class="pipeline-company">${r.company || r.email || "—"}</div>
-          ${r.estimated_value ? `<div class="pipeline-value">${fmt$(r.estimated_value)}</div>` : ""}
-        </div>`,
-            )
-            .join("") ||
-          '<div style="font-size:11px;color:var(--muted);padding:8px 0">Empty</div>'
-        }
-      </div>`,
+              `<div class="pipeline-col"><div class="pipeline-header"><span>${labels[s]}</span><span class="pipeline-count">${g[s].length}</span></div>${g[s].map((r) => `<div class="pipeline-card"><div class="pipeline-name">${r.first_name} ${r.last_name}</div><div class="pipeline-company">${r.company || r.email || "—"}</div>${r.estimated_value ? `<div class="pipeline-value">${fmt$(r.estimated_value)}</div>` : ""}</div>`).join("") || '<div style="font-size:11px;color:var(--muted);padding:8px 0">Empty</div>'}</div>`,
           )
           .join("");
-
         document.getElementById("leadsTable").innerHTML = rows.length
           ? rows
               .map(
-                (r) => `<tr>
-          <td><strong>${r.first_name} ${r.last_name}</strong></td>
-          <td>${r.company || "—"}</td><td style="color:var(--muted)">${r.source || "—"}</td>
-          <td>${badge(r.stage)}</td>
-          <td><div class="score-bar"><div class="score-track"><div class="score-fill" style="width:${r.score || 0}%"></div></div><div class="score-num">${r.score || 0}</div></div></td>
-          <td style="color:var(--accent);font-family:var(--font-head)">${fmt$(r.estimated_value)}</td>
-        </tr>`,
+                (r) =>
+                  `<tr><td><strong>${r.first_name} ${r.last_name}</strong></td><td>${r.company || "—"}</td><td style="color:var(--muted)">${r.source || "—"}</td><td>${badge(r.stage)}</td><td><div class="score-bar"><div class="score-track"><div class="score-fill" style="width:${r.score || 0}%"></div></div><div class="score-num">${r.score || 0}</div></div></td><td style="color:var(--accent);font-family:var(--font-head)">${fmt$(r.estimated_value)}</td></tr>`,
               )
               .join("")
           : errRow(6, "No leads found");
@@ -1741,14 +1639,8 @@
         document.getElementById("apptsTable").innerHTML = rows.length
           ? rows
               .map(
-                (a) => `<tr>
-          <td><strong>${a.title}</strong></td>
-          <td style="color:var(--muted)">${a.customer_id || "—"}</td>
-          <td style="color:var(--muted)">${a.type || "—"}</td>
-          <td>${badge(a.status)}</td>
-          <td style="color:var(--muted)">${fmtDate(a.scheduled_at)}</td>
-          <td style="color:var(--muted)">${a.duration_min || "—"} min</td>
-        </tr>`,
+                (a) =>
+                  `<tr><td><strong>${a.title}</strong></td><td style="color:var(--muted)">${a.customer_id || "—"}</td><td style="color:var(--muted)">${a.type || "—"}</td><td>${badge(a.status)}</td><td style="color:var(--muted)">${fmtDate(a.scheduled_at)}</td><td style="color:var(--muted)">${a.duration_min || "—"} min</td></tr>`,
               )
               .join("")
           : errRow(6, "No appointments found");
@@ -1761,22 +1653,14 @@
           apiFetch("/api/analytics/pipeline"),
         ]);
         const d = dash || {};
-        document.getElementById("analyticsKpi").innerHTML = `
-      <div class="kpi-card"><div class="kpi-label">Total Customers</div><div class="kpi-value" style="color:var(--accent2)">${d.total_customers || "—"}</div></div>
-      <div class="kpi-card"><div class="kpi-label">Active Leads</div><div class="kpi-value" style="color:var(--success)">${d.active_leads || "—"}</div></div>
-      <div class="kpi-card"><div class="kpi-label">Pipeline Value</div><div class="kpi-value" style="color:var(--accent)">${d.pipeline_value ? fmt$(d.pipeline_value) : "—"}</div></div>
-      <div class="kpi-card"><div class="kpi-label">Conversion Rate</div><div class="kpi-value" style="color:var(--warning)">${d.conversion_rate != null ? d.conversion_rate + "%" : "—"}</div></div>`;
+        document.getElementById("analyticsKpi").innerHTML =
+          `<div class="kpi-card"><div class="kpi-label">Total Customers</div><div class="kpi-value" style="color:var(--accent2)">${d.total_customers || "—"}</div></div><div class="kpi-card"><div class="kpi-label">Active Leads</div><div class="kpi-value" style="color:var(--success)">${d.active_leads || "—"}</div></div><div class="kpi-card"><div class="kpi-label">Pipeline Value</div><div class="kpi-value" style="color:var(--accent)">${d.pipeline_value ? fmt$(d.pipeline_value) : "—"}</div></div><div class="kpi-card"><div class="kpi-label">Conversion Rate</div><div class="kpi-value" style="color:var(--warning)">${d.conversion_rate != null ? d.conversion_rate + "%" : "—"}</div></div>`;
         const p = arr(pipeline);
         document.getElementById("pipelineStats").innerHTML = p.length
           ? p
               .map(
-                (
-                  s,
-                ) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-          <div style="width:90px;font-size:11px;color:var(--muted)">${s.stage}</div>
-          <div class="score-track" style="flex:1;height:8px"><div class="score-fill" style="width:${Math.min(100, s.pct || 50)}%"></div></div>
-          <div style="font-size:12px;color:var(--accent);width:80px;text-align:right">${fmt$(s.value)}</div>
-        </div>`,
+                (s) =>
+                  `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="width:90px;font-size:11px;color:var(--muted)">${s.stage}</div><div class="score-track" style="flex:1;height:8px"><div class="score-fill" style="width:${Math.min(100, s.pct || 50)}%"></div></div><div style="font-size:12px;color:var(--accent);width:80px;text-align:right">${fmt$(s.value)}</div></div>`,
               )
               .join("")
           : '<div class="empty">No pipeline data</div>';
@@ -1825,17 +1709,176 @@
 
       // ── Modal ──
       function openModal() {
-        document.getElementById("modalOverlay").classList.add("open");
+        if (currentPage === "customers") openCustomerModal();
+        else if (currentPage === "leads") openLeadModal();
+        else openAppointmentModal();
       }
       function closeModal() {
-        function openModal() {
-  if (currentPage === 'customers') openCustomerModal();
-  else if (currentPage === 'leads') openLeadModal();
-  else openAppointmentModal();
-}
+        document.getElementById("modalOverlay").classList.remove("open");
       }
 
-      async function submitModal() {
+      // Customer Modal
+      function openCustomerModal() {
+        document.getElementById("modalTitle").textContent = "New Customer";
+        document.getElementById("modalBody").innerHTML = `
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="mFirstName" placeholder="John" /></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="mLastName" placeholder="Doe" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="mEmail" type="email" placeholder="john@example.com" /></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Phone</label><input class="form-input" id="mPhone" placeholder="+1 234 567 890" /></div>
+        <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="mCompany" placeholder="Acme Inc." /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Status</label>
+          <select class="form-select" id="mCustStatus">
+            <option value="active">Active</option><option value="vip">VIP</option>
+            <option value="at_risk">At Risk</option><option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Total Spent ($)</label><input class="form-input" id="mTotalSpent" type="number" value="0" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="mCustNotes" placeholder="Optional notes..." /></div>`;
+        document.getElementById("submitBtn").onclick = submitCustomer;
+        document.getElementById("modalOverlay").classList.add("open");
+      }
+
+      async function submitCustomer() {
+        const firstName = document.getElementById("mFirstName").value.trim();
+        const lastName = document.getElementById("mLastName").value.trim();
+        if (!firstName || !lastName) {
+          showToast("First and last name required", true);
+          return;
+        }
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.textContent = "Creating...";
+        const result = await apiFetch("/api/customers", {
+          method: "POST",
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            email: document.getElementById("mEmail").value,
+            phone: document.getElementById("mPhone").value,
+            company: document.getElementById("mCompany").value,
+            status: document.getElementById("mCustStatus").value,
+            total_spent:
+              parseFloat(document.getElementById("mTotalSpent").value) || 0,
+            notes: document.getElementById("mCustNotes").value,
+          }),
+        });
+        btn.disabled = false;
+        btn.textContent = "Create";
+        if (result) {
+          closeModal();
+          showToast("Customer created!");
+          loadCustomers();
+        } else showToast("Failed to create customer", true);
+      }
+
+      // Lead Modal
+      function openLeadModal() {
+        document.getElementById("modalTitle").textContent = "New Lead";
+        document.getElementById("modalBody").innerHTML = `
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="mFirstName" placeholder="Jane" /></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="mLastName" placeholder="Smith" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="mEmail" type="email" placeholder="jane@example.com" /></div>
+        <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="mCompany" placeholder="Acme Inc." /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Source</label>
+          <select class="form-select" id="mSource">
+            <option value="website">Website</option><option value="referral">Referral</option>
+            <option value="linkedin">LinkedIn</option><option value="cold_outreach">Cold Outreach</option>
+            <option value="event">Event</option><option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Stage</label>
+          <select class="form-select" id="mStage">
+            <option value="new">New</option><option value="discovery">Discovery</option>
+            <option value="qualified">Qualified</option><option value="proposal">Proposal</option>
+            <option value="closed_won">Closed Won</option><option value="closed_lost">Closed Lost</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Score (0-100)</label><input class="form-input" id="mScore" type="number" value="50" min="0" max="100" /></div>
+        <div class="form-group"><label class="form-label">Est. Value ($)</label><input class="form-input" id="mEstValue" type="number" placeholder="5000" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="mLeadNotes" placeholder="Optional notes..." /></div>`;
+        document.getElementById("submitBtn").onclick = submitLead;
+        document.getElementById("modalOverlay").classList.add("open");
+      }
+
+      async function submitLead() {
+        const firstName = document.getElementById("mFirstName").value.trim();
+        const lastName = document.getElementById("mLastName").value.trim();
+        if (!firstName || !lastName) {
+          showToast("First and last name required", true);
+          return;
+        }
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.textContent = "Creating...";
+        const result = await apiFetch("/api/leads", {
+          method: "POST",
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            email: document.getElementById("mEmail").value,
+            company: document.getElementById("mCompany").value,
+            source: document.getElementById("mSource").value,
+            stage: document.getElementById("mStage").value,
+            score: parseInt(document.getElementById("mScore").value) || 0,
+            estimated_value:
+              parseFloat(document.getElementById("mEstValue").value) || null,
+            notes: document.getElementById("mLeadNotes").value,
+          }),
+        });
+        btn.disabled = false;
+        btn.textContent = "Create";
+        if (result) {
+          closeModal();
+          showToast("Lead created!");
+          loadLeads();
+        } else showToast("Failed to create lead", true);
+      }
+
+      // Appointment Modal
+      function openAppointmentModal() {
+        document.getElementById("modalTitle").textContent = "New Appointment";
+        document.getElementById("modalBody").innerHTML = `
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="mTitle" placeholder="e.g. Strategy Call" /></div>
+        <div class="form-group"><label class="form-label">Type</label>
+          <select class="form-select" id="mType">
+            <option value="consultation">Consultation</option><option value="follow_up">Follow-up</option>
+            <option value="demo">Demo</option><option value="strategy">Strategy</option>
+            <option value="proposal">Proposal</option><option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Customer ID (UUID)</label><input class="form-input" id="mCustomerId" placeholder="e.g. 123e4567-e89b-12d3-a456-426614174000" /></div>
+      <div class="form-group"><label class="form-label">Scheduled At</label><input class="form-input" id="mDate" type="datetime-local" /></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Duration (min)</label><input class="form-input" id="mDuration" type="number" value="60" min="15" max="480" /></div>
+        <div class="form-group"><label class="form-label">Status</label>
+          <select class="form-select" id="mStatus">
+            <option value="scheduled">Scheduled</option><option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option><option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="mNotes" placeholder="Optional notes..." /></div>`;
+        document.getElementById("submitBtn").onclick = submitAppointment;
+        document.getElementById("modalOverlay").classList.add("open");
+      }
+
+      async function submitAppointment() {
         const title = document.getElementById("mTitle").value.trim();
         const cid = document.getElementById("mCustomerId").value.trim();
         if (!title) {
@@ -1846,11 +1889,9 @@
           showToast("Customer ID is required", true);
           return;
         }
-
         const btn = document.getElementById("submitBtn");
         btn.disabled = true;
         btn.textContent = "Creating...";
-
         const result = await apiFetch("/api/appointments", {
           method: "POST",
           body: JSON.stringify({
@@ -1864,17 +1905,14 @@
             notes: document.getElementById("mNotes").value,
           }),
         });
-
         btn.disabled = false;
         btn.textContent = "Create";
         if (result) {
           closeModal();
           showToast("Appointment created!");
           if (currentPage === "appointments") loadAppointments();
-          if (currentPage === "dashboard") loadDashboard();
-        } else {
-          showToast("Failed to create appointment", true);
-        }
+          else loadDashboard();
+        } else showToast("Failed to create appointment", true);
       }
 
       // ── Toast ──
@@ -1886,191 +1924,6 @@
         t.classList.add("show");
         setTimeout(() => t.classList.remove("show"), 3500);
       }
-
-      // ── Util ──
-      function arr(d) {
-        return Array.isArray(d) ? d : d?.data || [];
-      }
-// ── Customer Modal ──
-function openCustomerModal() {
-  document.getElementById('modalTitle').textContent = 'New Customer';
-  document.getElementById('modalBody').innerHTML = `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="mFirstName" placeholder="John" /></div>
-      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="mLastName" placeholder="Doe" /></div>
-    </div>
-    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="mEmail" type="email" placeholder="john@example.com" /></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Phone</label><input class="form-input" id="mPhone" placeholder="+1 234 567 890" /></div>
-      <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="mCompany" placeholder="Acme Inc." /></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Status</label>
-        <select class="form-select" id="mCustStatus">
-          <option value="active">Active</option>
-          <option value="vip">VIP</option>
-          <option value="at_risk">At Risk</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">Total Spent ($)</label><input class="form-input" id="mTotalSpent" type="number" value="0" /></div>
-    </div>
-    <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="mCustNotes" placeholder="Optional notes..." /></div>
-  `;
-  document.getElementById('submitBtn').onclick = submitCustomer;
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-async function submitCustomer() {
-  const firstName = document.getElementById('mFirstName').value.trim();
-  const lastName = document.getElementById('mLastName').value.trim();
-  if (!firstName || !lastName) { showToast('First and last name required', true); return; }
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = 'Creating...';
-  const result = await apiFetch('/api/customers', {
-    method: 'POST',
-    body: JSON.stringify({
-      first_name: firstName,
-      last_name: lastName,
-      email: document.getElementById('mEmail').value,
-      phone: document.getElementById('mPhone').value,
-      company: document.getElementById('mCompany').value,
-      status: document.getElementById('mCustStatus').value,
-      total_spent: parseFloat(document.getElementById('mTotalSpent').value) || 0,
-      notes: document.getElementById('mCustNotes').value,
-    }),
-  });
-  btn.disabled = false; btn.textContent = 'Create';
-  if (result) { closeModal(); showToast('Customer created!'); loadCustomers(); }
-  else showToast('Failed to create customer', true);
-}
-
-// ── Lead Modal ──
-function openLeadModal() {
-  document.getElementById('modalTitle').textContent = 'New Lead';
-  document.getElementById('modalBody').innerHTML = `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" id="mFirstName" placeholder="Jane" /></div>
-      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" id="mLastName" placeholder="Smith" /></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="mEmail" type="email" placeholder="jane@example.com" /></div>
-      <div class="form-group"><label class="form-label">Company</label><input class="form-input" id="mCompany" placeholder="Acme Inc." /></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Source</label>
-        <select class="form-select" id="mSource">
-          <option value="website">Website</option>
-          <option value="referral">Referral</option>
-          <option value="linkedin">LinkedIn</option>
-          <option value="cold_outreach">Cold Outreach</option>
-          <option value="event">Event</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">Stage</label>
-        <select class="form-select" id="mStage">
-          <option value="new">New</option>
-          <option value="discovery">Discovery</option>
-          <option value="qualified">Qualified</option>
-          <option value="proposal">Proposal</option>
-          <option value="closed_won">Closed Won</option>
-          <option value="closed_lost">Closed Lost</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Score (0-100)</label><input class="form-input" id="mScore" type="number" value="50" min="0" max="100" /></div>
-      <div class="form-group"><label class="form-label">Est. Value ($)</label><input class="form-input" id="mEstValue" type="number" placeholder="5000" /></div>
-    </div>
-    <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="mLeadNotes" placeholder="Optional notes..." /></div>
-  `;
-  document.getElementById('submitBtn').onclick = submitLead;
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-async function submitLead() {
-  const firstName = document.getElementById('mFirstName').value.trim();
-  const lastName = document.getElementById('mLastName').value.trim();
-  if (!firstName || !lastName) { showToast('First and last name required', true); return; }
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = 'Creating...';
-  const result = await apiFetch('/api/leads', {
-    method: 'POST',
-    body: JSON.stringify({
-      first_name: firstName,
-      last_name: lastName,
-      email: document.getElementById('mEmail').value,
-      company: document.getElementById('mCompany').value,
-      source: document.getElementById('mSource').value,
-      stage: document.getElementById('mStage').value,
-      score: parseInt(document.getElementById('mScore').value) || 0,
-      estimated_value: parseFloat(document.getElementById('mEstValue').value) || null,
-      notes: document.getElementById('mLeadNotes').value,
-    }),
-  });
-  btn.disabled = false; btn.textContent = 'Create';
-  if (result) { closeModal(); showToast('Lead created!'); loadLeads(); }
-  else showToast('Failed to create lead', true);
-}
-
-function openAppointmentModal() {
-  document.getElementById('modalTitle').textContent = 'New Appointment';
-  document.getElementById('modalBody').innerHTML = `
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Title</label><input class="form-input" id="mTitle" placeholder="e.g. Strategy Call" /></div>
-      <div class="form-group"><label class="form-label">Type</label>
-        <select class="form-select" id="mType">
-          <option value="consultation">Consultation</option>
-          <option value="follow_up">Follow-up</option>
-          <option value="demo">Demo</option>
-          <option value="strategy">Strategy</option>
-          <option value="proposal">Proposal</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Customer ID (UUID)</label><input class="form-input" id="mCustomerId" placeholder="e.g. 123e4567-e89b-12d3-a456-426614174000" /></div>
-    <div class="form-group"><label class="form-label">Scheduled At</label><input class="form-input" id="mDate" type="datetime-local" /></div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">Duration (min)</label><input class="form-input" id="mDuration" type="number" value="60" min="15" max="480" /></div>
-      <div class="form-group"><label class="form-label">Status</label>
-        <select class="form-select" id="mStatus">
-          <option value="scheduled">Scheduled</option>
-          <option value="confirmed">Confirmed</option>
-          <option value="completed">Completed</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="mNotes" placeholder="Optional notes..." /></div>
-  `;
-  document.getElementById('submitBtn').onclick = submitAppointment;
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-async function submitAppointment() {
-  const title = document.getElementById('mTitle').value.trim();
-  const cid = document.getElementById('mCustomerId').value.trim();
-  if (!title) { showToast('Title is required', true); return; }
-  if (!cid)   { showToast('Customer ID is required', true); return; }
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = 'Creating...';
-  const result = await apiFetch('/api/appointments', {
-    method: 'POST',
-    body: JSON.stringify({
-      title, customer_id: cid,
-      type: document.getElementById('mType').value,
-      scheduled_at: document.getElementById('mDate').value,
-      duration_min: parseInt(document.getElementById('mDuration').value) || 60,
-      status: document.getElementById('mStatus').value,
-      notes: document.getElementById('mNotes').value,
-    }),
-  });
-  btn.disabled = false; btn.textContent = 'Create';
-  if (result) { closeModal(); showToast('Appointment created!'); if (currentPage==='appointments') loadAppointments(); else loadDashboard(); }
-  else showToast('Failed to create appointment', true);
-}
     </script>
   </body>
 </html>
